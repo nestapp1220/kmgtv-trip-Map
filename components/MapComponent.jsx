@@ -1,20 +1,18 @@
-import React, { useEffect, FC } from 'react';
+import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import type { TravelLocation } from '../types';
 import { renderToStaticMarkup } from 'react-dom/server';
 import MapPinIcon from './icons/MapPinIcon';
-import type { Language } from '../App';
 
 // Fix for default icon issue with webpack
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-const createCustomIcon = (isSelected: boolean) => {
+const createCustomIcon = (isSelected) => {
   return L.divIcon({
     html: renderToStaticMarkup(<MapPinIcon selected={isSelected} />),
     className: '',
@@ -23,12 +21,7 @@ const createCustomIcon = (isSelected: boolean) => {
   });
 };
 
-interface MapFlyToProps {
-  position: [number, number];
-  zoom: number;
-}
-
-const MapFlyTo: FC<MapFlyToProps> = ({ position, zoom }) => {
+const MapFlyTo = ({ position, zoom }) => {
   const map = useMap();
   useEffect(() => {
     if (position) {
@@ -41,7 +34,7 @@ const MapFlyTo: FC<MapFlyToProps> = ({ position, zoom }) => {
   return null;
 };
 
-const AutoFitBounds: FC<{ locations: TravelLocation[]; isLocationSelected: boolean }> = ({ locations, isLocationSelected }) => {
+const AutoFitBounds = ({ locations, isLocationSelected }) => {
   const map = useMap();
 
   useEffect(() => {
@@ -75,15 +68,8 @@ const AutoFitBounds: FC<{ locations: TravelLocation[]; isLocationSelected: boole
 }
 
 
-interface MapComponentProps {
-  locations: TravelLocation[];
-  selectedLocation: TravelLocation | null;
-  onMarkerClick: (location: TravelLocation) => void;
-  language: Language;
-}
-
-const MapComponent: React.FC<MapComponentProps> = ({ locations, selectedLocation, onMarkerClick, language }) => {
-  const initialPosition: [number, number] = [20, 0]; // World view
+const MapComponent = ({ locations, selectedLocation, onMarkerClick, language }) => {
+  const initialPosition = [20, 0]; // World view
 
   return (
     <MapContainer center={initialPosition} zoom={2} scrollWheelZoom={true} className="w-full h-full">
