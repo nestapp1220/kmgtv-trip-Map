@@ -1,6 +1,4 @@
-import type { TravelLocation } from '../types';
-
-export const travelData: TravelLocation[] = [
+export const travelData = [
   {
     id: 1,
     city: { ja: "東京", en: "Tokyo", zh: "东京", ko: "도쿄" },
@@ -22,7 +20,7 @@ export const travelData: TravelLocation[] = [
     description: {
       ja: "日本の伝統の中心を巡る旅。　おすすめ - 奈良公園、清水寺、千本神社、USJ、道頓堀",
       en: "A journey through the traditional heart of Japan. We enjoyed the street food of Osaka, the tranquil temples of Kyoto, and the friendly deer of Nara. Recommended places - Nara Park, Kiyomizu-dera Temple, Senbon Shrine, Universal Studios Japan, Dotonbori",
-      zh: "探索日本传统文化的心脏地带。我们品尝了大阪的街头美食、京都的静谧寺庙，以及奈良友善的鹿群。推荐景点：奈良公园、清水寺、千本神社、日本环球影城、道顿堀",
+      zh: "探索日本传统文化的心脏地带。我们品尝了大阪的街头美食、京都的静谧寺庙，以及奈良友善的鹿群。推荐景点：奈良公园、清水寺、千本神社、日本环球影城、道頓堀",
       ko: "일본의 전통의 중심을 둘러싼 여행. 오사카의 거리 음식, 교토의 조용한 사원, 나라의 친절한 사슴을 즐겼습니다. 추천 - 나라 공원, 기요미즈데라, 센본 신사, USJ, 도톤보리"
     },
     youtubeVideoIds: ["leTsYKl3nHc"],
