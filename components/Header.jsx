@@ -1,18 +1,6 @@
 import React from 'react';
-import type { Language } from '../App';
 
-interface HeaderProps {
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
-  selectedCountry: string;
-  setSelectedCountry: (country: string) => void;
-  uniqueCountries: string[];
-  language: Language;
-  setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
-}
-
-const Header: React.FC<HeaderProps> = ({
+const Header = ({
   searchQuery,
   setSearchQuery,
   selectedCountry,
@@ -46,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({
           </select>
           <select
             value={language}
-            onChange={(e) => setLanguage(e.target.value as Language)}
+            onChange={(e) => setLanguage(e.target.value)}
             className="px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             aria-label="Select language"
           >
