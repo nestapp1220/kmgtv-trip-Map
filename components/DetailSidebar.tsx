@@ -1,15 +1,6 @@
 import React from 'react';
-import type { TravelLocation } from '../types';
-import type { Language } from '../App';
 
-interface DetailSidebarProps {
-  location: TravelLocation | null;
-  onClose: () => void;
-  language: Language;
-  t: (key: string) => string;
-}
-
-const DetailSidebar: React.FC<DetailSidebarProps> = ({ location, onClose, language, t }) => {
+const DetailSidebar = ({ location, onClose, language, t }) => {
   return (
     <div
       className={`fixed top-0 right-0 h-full w-full md:w-[450px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-20 overflow-y-auto ${
