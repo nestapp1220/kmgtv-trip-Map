@@ -1,11 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { travelData } from './data/travelData';
-import type { TravelLocation } from './types';
 import Header from './components/Header';
 import MapComponent from './components/MapComponent';
 import DetailSidebar from './components/DetailSidebar';
-
-export type Language = 'ja' | 'en' | 'zh' | 'ko';
 
 const uiStrings = {
   headerTitle: {
@@ -41,16 +38,16 @@ const uiStrings = {
 };
 
 
-const App: React.FC = () => {
-  const [locations] = useState<TravelLocation[]>(travelData);
-  const [filteredLocations, setFilteredLocations] = useState<TravelLocation[]>(locations);
-  const [selectedLocation, setSelectedLocation] = useState<TravelLocation | null>(null);
+const App = () => {
+  const [locations] = useState(travelData);
+  const [filteredLocations, setFilteredLocations] = useState(locations);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   
-  const [language, setLanguage] = useState<Language>('ja');
+  const [language, setLanguage] = useState('ja');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
 
-  const t = (key: keyof typeof uiStrings) => uiStrings[key][language] || uiStrings[key]['en'];
+  const t = (key) => uiStrings[key][language] || uiStrings[key]['en'];
 
   const uniqueCountries = useMemo(() => [...new Set(locations.map(loc => loc.country[language]))], [locations, language]);
 
@@ -75,7 +72,7 @@ const App: React.FC = () => {
     }
   }, [searchQuery, selectedCountry, locations, language, uniqueCountries]);
 
-  const handleMarkerClick = (location: TravelLocation) => {
+  const handleMarkerClick = (location) => {
     setSelectedLocation(location);
   };
   
