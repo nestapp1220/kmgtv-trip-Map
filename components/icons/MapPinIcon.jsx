@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface MapPinIconProps {
-  selected: boolean;
-}
-
-const MapPinIcon: React.FC<MapPinIconProps> = ({ selected }) => {
-  const primaryColor = selected ? 'indigo' : 'blue';
+const MapPinIcon = ({ selected }) => {
   const scale = selected ? 'scale(1.2)' : 'scale(1)';
 
   return (
